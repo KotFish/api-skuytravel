@@ -19,7 +19,7 @@ class CreateWisatasTable extends Migration
             $table->string('lokasi');
             $table->string('deskripsi');
             $table->string('url_gambar');
-            $table->double('harga');
+            $table->integer('harga');
             $table->timestamps();
         });
     }
