@@ -22,7 +22,7 @@ class WisataController extends Controller
 
         return response([
             'message' => 'Empty!',
-            'data' => null
+            'data' => $wisatas
         ], 200);
     }
 
