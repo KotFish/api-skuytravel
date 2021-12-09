@@ -23,7 +23,7 @@ class RentalController extends Controller
         return response([
             'message' => 'Empty!',
             'data' => null
-        ], 400);
+        ], 200);
     }
 
     public function show($id){
