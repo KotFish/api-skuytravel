@@ -20,18 +20,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register', 'Api\AuthController@register');
 Route::post('login', 'Api\AuthController@login');
-Route::get('wisata', 'Api\WisataController@index');
-Route::get('wisata/{id}', 'Api\WisataController@show');
-Route::post('wisata', 'Api\WisataController@store');
-Route::put('wisata/{id}', 'Api\WisataController@update');
-Route::delete('wisata/{id}', 'Api\WisataController@destroy');
 
-Route::get('rental', 'Api\RentalController@index');
-Route::get('rental/{id}', 'Api\RentalController@show');
-Route::post('rental', 'Api\RentalController@store');
-Route::put('rental/{id}', 'Api\RentalController@update');
-Route::delete('rental/{id}', 'Api\RentalController@destroy');
 
-// Route::group(['middleware' => 'auth:api'], function(){
-    
-// });
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::get('wisata', 'Api\WisataController@index');
+    Route::get('wisata/{id}', 'Api\WisataController@show');
+    Route::post('wisata', 'Api\WisataController@store');
+    Route::put('wisata/{id}', 'Api\WisataController@update');
+    Route::delete('wisata/{id}', 'Api\WisataController@destroy');
+
+    Route::get('rental', 'Api\RentalController@index');
+    Route::get('rental/{id}', 'Api\RentalController@show');
+    Route::post('rental', 'Api\RentalController@store');
+    Route::put('rental/{id}', 'Api\RentalController@update');
+    Route::delete('rental/{id}', 'Api\RentalController@destroy');
+});
