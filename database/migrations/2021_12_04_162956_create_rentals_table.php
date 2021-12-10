@@ -19,7 +19,7 @@ class CreateRentalsTable extends Migration
             $table->string('nama_kendaraan');
             $table->string('jenis_kendaraan');
             $table->string('biaya_penyewaan');
-            $table->integer('status');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
