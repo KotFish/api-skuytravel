@@ -16,13 +16,13 @@ class WisataController extends Controller
         if(count($wisatas) > 0){
             return response([
                 'message' => 'Retrieve All Success!',
-                'data' => $wisatas
+                'datas' => $wisatas
             ], 200);
         }
 
         return response([
             'message' => 'Empty!',
-            'data' => $wisatas
+            'datas' => $wisatas
         ], 200);
     }
 

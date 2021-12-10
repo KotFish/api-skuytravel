@@ -16,13 +16,13 @@ class RentalController extends Controller
         if(count($rentals) > 0){
             return response([
                 'message' => 'Retrieve All Success!',
-                'data' => $rentals
+                'datas' => $rentals
             ], 200);
         }
 
         return response([
             'message' => 'Empty!',
-            'data' => $rentals
+            'datas' => $rentals
         ], 200);
     }
 
