@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Validator;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
@@ -53,6 +54,61 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
             'access_token' => $token
         ]);
+    }
+
+    public function show(){
+        $user = User::find(Auth::id());
+
+        if(!is_null($user)){
+            return response([
+                'message' => 'Retrieve User Success!',
+                'user' => $user
+            ], 200);
+        }
+
+        return response([
+            'message' => 'User Not Found!',
+            'user' => null
+        ], 404);
+    }
+
+
+    public function update(Request $request){
+        $user = user::find(Auth::id());
+
+        if(is_null($user)){
+            return response([
+                'message' => 'User Not Found!',
+                'data' => null
+            ], 404);
+        }
+
+        $updateData = $request->all();
+        $validate = Validator::make($updateData, [
+            'name' => 'required|max:60',
+            'email' => ['required', 'email:rfc,dns', Rule::unique('users')->ignore($user)],
+            'password' => 'required'
+        ]);
+
+        if($validate->fails())
+            return response(['message' => $validate->errors()], 400);
+
+        $user->name = $updateData['name'];
+        $user->email = $updateData['email'];
+        $user->password = bcrypt($updateData['password']);
+
+
+        if($user->save()){
+            return response([
+                'message' => 'Update User Success!',
+                'data' => $user
+            ], 200);
+        }
+
+        return response([
+            'message' => 'Update User Failed!',
+            'data' => null
+        ], 400);
     }
 
     // public function logout(Request $request){

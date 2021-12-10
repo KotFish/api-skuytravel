@@ -33,4 +33,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('rental', 'Api\RentalController@store');
     Route::put('rental/{id}', 'Api\RentalController@update');
     Route::delete('rental/{id}', 'Api\RentalController@destroy');
+
+    Route::get('user', 'Api\RentalController@show');
+    Route::post('user', 'Api\AuthController@update');
 });
